@@ -29,6 +29,9 @@
     try {
       var avatarUrl=JSON.parse(result.body);
       avatarUrl.forEach((e) => { downloadImageByURL(e.avatar_url, './avatars/' + e.login + '.jpg')})
+      for (let i = 1; i <= avatarUrl.length; i++){
+        console.log('Downloading image :' + i);
+      }
     }
     catch (err) {
       console.log('Repo Owner or Repo Name you entered does not exit');
@@ -41,14 +44,10 @@
         throw err;
       })
       .on('response', function (response) {
-      console.log('Downloading image...');
       })
       .pipe(fs.createWriteStream(filePath));
     }
-
-
-
-  getRepoContributors(repOwner, repName, callback);
+    getRepoContributors(repOwner, repName, callback);
 
 
 
